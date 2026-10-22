@@ -20,6 +20,11 @@ class veiculosService{
         const res = await pool.query("DELETE FROM veiculos WHERE id=$1 RETURNING *", [id]);
         return res.rows[0]
     }
+
+       async put(id, {modelo, marca, ano, placa}) {
+        const res = await pool.query("UPDATE veiculos SET modelo=$1, marca=$2, ano=$3, placa=$4 WHERE id=$5 RETURNING *", [modelo, marca, ano, placa, id]);
+        return res.rows[0]
+       }    
 }
 
 export const veiculosServices = new veiculosService()

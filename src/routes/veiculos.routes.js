@@ -36,5 +36,16 @@ veiculosRouter.delete("/", async (req, res) => {
          res.status(201).json(veiculos);
     }catch (error) {
         console.error (error);
+        res.status(500).json({error: "erro ao deletar o veiculo"})
+    }
+});
+
+veiculosRouter.put("/:id", async (req, res) => {
+    try {
+        const veiculos = await veiculosServices.put(req.params.id, req.body);
+        res.status(201).json(veiculos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "erro ao atualizar o veiculo" })
     }
 });
